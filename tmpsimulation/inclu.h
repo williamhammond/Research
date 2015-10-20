@@ -12,6 +12,7 @@
 #include<new>
 #include<time.h>
 #include <math.h>
+#include <string.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_linalg.h>
@@ -145,7 +146,7 @@ template<typename T>
 void test(const char* filName,T data, size_t size, int num,char* mode)
 {
 	char* testFile = new char[MAX_FILENAME];
-	strcpy(testFile,"/Users/maomaowlw/Research/Mywork/Workspace/TMPSimulation/Test/");
+	strcpy(testFile,"Test/");
 	strcat(testFile,filName);
 
 	writeFile(testFile,data,size,num,mode);
