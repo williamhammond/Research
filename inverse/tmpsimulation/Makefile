@@ -2,8 +2,8 @@ OBJS = Main.o external.o matEg.o
 CC = g++ -g
 CFLAGS =-c -Wno-write-strings
 OBJS = external.o matEg.o Main.o TMPSimulation.o Matrix.o
-INC = -I/usr/local/MATLAB/R2015b/extern/include -I/usr/include/gsl/
-LIB = -L/usr/local/MATLAB/R2015b/bin/glnxa64 -lgsl -lmx -leng -lgslcblas
+INC = -I/usr/include/gsl/ -I/usr/local/include/matlab
+LIB = -L/opt/MATLAB/R2015b/bin/glnxa64 -lgsl -lmx -leng -lgslcblas
 Main : $(OBJS)
 	    $(CC) $(OBJS) -o Main $(LIB) 
 external.o : external.h
