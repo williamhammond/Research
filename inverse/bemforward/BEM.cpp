@@ -7,8 +7,8 @@
 #include"inclu.h"
 #include"external.h"
 #include"BEMCell.h"
-#include"BEM.h"
 #include"MFree.h"
+#include"BEM.h"
 //#include "matlab.hpp"
 //**************************************************************************************************************
 // Class : BEM
@@ -497,7 +497,7 @@ void BEM_source::BEMCompute(char** filOutput)
 		}
 	}
 
-	writeFile("/Users/maomaowlw/Research/Mywork/Data/Geometry/CESC11/Healthy/Processed/Ref/heart_vs.normal",m_dpEleDer,sizeof(double),m_nEleNum*m_ptrBEMEle->m_nDim,"wb");
+	//writeFile("/Users/maomaowlw/Research/Mywork/Data/Geometry/CESC11/Healthy/Processed/Ref/heart_vs.normal",m_dpEleDer,sizeof(double),m_nEleNum*m_ptrBEMEle->m_nDim,"wb");
 	/* 	test("BEM_outward_normal.bin", m_dpEleDer,sizeof(double), m_nEleNum*m_ptrBEMEle->m_nDim, "wb");
   test("BEM_gp.cor",m_dpGps,sizeof(double),m_nGPNum*m_ptrBEMEle->m_nDim,"wb");
 	test("original_BEMK.bin",m_dpK,sizeof(double),m_nNodNum*m_nNodNum,"wb");

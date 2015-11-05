@@ -3,16 +3,17 @@
 #include "inclu.h"
 #include"BEMCell.h"
 #include "external.h"
+#include "MFree.h"
 #include "BEM.h"
 #include "matEg.h"
 #include "Matrix.h"
-
 //*********************************************************
 //external variables
 //*********************************************************
-char* FILE_REF_COR = "/Users/maomaowlw/Research/Mywork/Data/Geometry/Auckland/Auckland_f01/Auckland_f01.cor";
+//char* FILE_REF_COR = "/Users/maomaowlw/Research/Mywork/Data/Geometry/Auckland/Auckland_f01/Auckland_f01.cor";
 		//"";PhysioNet/case2/Processed/Results/Ref/heart.cor
-char*  FILE_REF_FIB = "/Users/maomaowlw/Research/Mywork/Data/Geometry/Auckland/Auckland_f01/Auckland_f01.fib";
+//char*  FILE_REF_FIB =  
+//"/Users/maomaowlw/Research/Mywork/Data/Geometry/Auckland/Auckland_f01/Auckland_f01.fib";
 		//"";PhysioNet/case2/Processed/Results/Ref/heart.fi
 
 //***********************************************************
@@ -370,13 +371,13 @@ int computeFECG()
     		num_file = 11;
     	if (type == 1 || type == 2)
     	{
-    	    char* copath_ref = "/Users/maomaowlw/Research/Mywork/ForLAC1075/Ref/";
+    	    char* copath_ref = "/home/will/Documents/Research/inverse/data/processed/Ref/";
     	    		//"Ref/";Auckland/Auckland_f02_2_5/Processed/Results/Ref/";
     	    	//;"../BEMForward/Period_III/Sphere/input/test/";
-    	    char* in = "/Users/maomaowlw/Research/Mywork/ForLAC1075/Final/";
+    	    char* in = "/home/will/Documents/Research/inverse/data/processed/Final/";
     	    		//"Auckland/Auckland_f02_2_5/Final/";PhysioNet/case2/Auckland/Auckland_f02_2_5/Processed/Results/Final/";
     	               //"../BEMForward/Period_III/Sphere/input/test/";
-    		char* out ="/Users/maomaowlw/Research/Mywork/ForLAC1075/Simulation/";
+    		char* out ="/home/will/Documents/Research/inverse/data/processed/Simulation/";
     				//"Auckland/Auckland_f02_2_5/Simulation/";Auckland/Auckland_f02_2_5/Processed/Results/Simulation/";
     		////"../BEMForward/Period_III/Sphere/output/test/F1/";	PhysioNet/case2	              
     		char id[5];

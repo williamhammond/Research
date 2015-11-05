@@ -17,10 +17,10 @@ int main()
 {
 	cout<<"Meshfree particles generation"<<endl;
 
-	char* path_in = "/Research/Meshfree/JHUPigData/Ref2/";
+	char* path_in = "/home/will/Documents/Research/inverse/data/processed/Ref/";
 			//"/Users/maomaowlw/Research/Mywork/Data/Geometry/ECGSIM/NormalMaleYoung2/Ref/";
 		//			"Auckland/Auckland_f02_2_5/Surfaces/";
-    char* path_out = "/Research/Meshfree/JHUPigData/Final/";
+    char* path_out = "/home/will/Documents/Research/inverse/data/processed/Final/";
     		//"/Users/maomaowlw/Research/Mywork/Data/Geometry/ECGSIM/NormalMaleYoung2/Final/";
 		//			"PhysioNet/case4/Processed/Results/Ref/";
 	char* filename_in = "heart";

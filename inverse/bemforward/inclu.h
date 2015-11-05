@@ -12,6 +12,7 @@
 #include<new>
 #include<time.h>
 #include <math.h>
+#include<cstring>
 using std::cerr;
 using std::cout;
 using std::cin;
@@ -154,4 +155,4 @@ void test(const char* filName,T data, size_t size, int num,char* mode)
 }
 
 
-#endif _INCLU__H_
+#endif //_INCLU__H_

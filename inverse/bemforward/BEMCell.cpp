@@ -7,6 +7,7 @@
 #include "inclu.h"
 #include "external.h"
 #include "BEMCell.h"
+#include "MFree.h"
 #include "BEM.h"
 //#include "matlab.hpp"
 

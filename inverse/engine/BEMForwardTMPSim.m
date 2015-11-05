@@ -1,9 +1,9 @@
 clear
 % setup the path where the files are located
 % dont forget to setup matlab path to this path
-path = '/Users/jd1336/Work/local_gccis-casci-cbl/Data/HalifaxEP/DC/Processed/Simulation/2144/input/';
+path = '/home/will/Documents/Research/inverse/data/processed/Simulation/1898/Input/';
 numSur= 120;
-numVol= 2144;
+numVol= 1898;
 
 % get K
 fileK = strcat(path,'BEMK.bin'); 

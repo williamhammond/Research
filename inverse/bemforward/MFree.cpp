@@ -1350,7 +1350,7 @@ void MFree::assTrans(BEM& bem,char* output)
 		}  //x
        //	write out gp nodes for visualization***********************************
     	cout<<"number of gs points used: "<<m_nGPNum<<endl;
-    	writeGPInfo("/Users/maomaowlw/Research/Mywork/Workspace/BEMForward/GP/");
+    	//writeGPInfo("/Users/maomaowlw/Research/Mywork/Workspace/BEMForward/GP/");
     	delete m_ptrGP;
 	}
 	else

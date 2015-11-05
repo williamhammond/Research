@@ -12,13 +12,13 @@
 % model = 'P','O','M'
 % type = 0 with RK / 1 with ode82
 % delay = -1, RBBB / -2, LBBB/ 0 no delay / >0 dela
-path_geo = '/mnt/hgfs/lxwast/Research/Data/HalifaxEP/M4_RX/Processed/Final/2230/';
+path_geo = '/home/will/Documents/Research/inverse/data/processed/Final/1898/';
 %Cube/Final/1331/';Auckland/Auckland_f02_2_5/Processed/Results/Final/836/';PhysioNet/case4/Processed/Results/GenericGeometry/Final/1839/';
 
-path_in = '/mnt/hgfs/lxwast/Research/Data/HalifaxEP/M4_RX/Processed/Simulation/2230/Input/N/';
+path_in = '/home/will/Documents/Research/inverse/data/processed/Simulation/1898/Input/matlabinput/';
 %PhysioNet/case2/Processed/Results/Simulation/1373/Input/';Auckland/Auckland_f02_2_5/Processed/Results/Simulation/836/Input/Torso370/';
 %Cube/Simulation/1331/Input/'4PhysioNet/case4/Processed/Results/GenericGeometry/Simulation/1839/Input/';
-path_out = '/mnt/hgfs/lxwast/Research/Data/HalifaxEP/M4_RX/Processed/Simulation/2230/Output/N/';
+path_out = '/home/will/Documents/Research/inverse/data/processed/Simulation/1898/Output/';
 %PhysioNet/case4/Processed/Results/Simulation/1373/Output/Test/';Auckland/A
 %uckland_f02_2_5/Processed/Results/Simulation/836/Output/Torso370/';PhysioNet/case4/Processed/Results/GenericGeometry/Simulation/1839/Output/';
 %ation/1331/Output/';
