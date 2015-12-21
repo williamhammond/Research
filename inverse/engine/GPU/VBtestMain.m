@@ -1,10 +1,10 @@
 % This code may need to adjust parameters: noiCov, Eps, Alpha_s 
 % input and output path
-% path='../../data/PhysioNet/Case3/Processed/Simulation/Input/';
-% path2='../../data/PhysioNet/Case3/Processed/Simulation/Output/';
+path='../../../data/PhysioNet/Case3/Processed/Simulation/Input/';
+path2='../../../data/PhysioNet/Case3/Processed/Simulation/Output/';
 
-path='/home/wth4280/Documents/inverse/data/processed/Simulation/1898/Input/';
-path2='/home/wth4280/Documents/inverse/data/processed/Simulation/1898/Output/';
+%path='/home/wth4280/Documents/inverse/data/processed/Simulation/1898/Input/';
+%path2='/home/wth4280/Documents/inverse/data/processed/Simulation/1898/Output/';
 
 % transfer matrix H 
 file = strcat(path,'Trans.bin');
