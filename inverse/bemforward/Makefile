@@ -2,8 +2,8 @@ OBJS = Main.o external.o matEg.o
 CC = g++ -g
 CFLAGS =-c -Wno-write-strings
 OBJS =  MFree.o Main.o matEg.o Matrix.o BEM.o external.o BEMCell.o 
-INC = -I/usr/include/gsl/ -I/usr/local/include/matlab
-LIB = -L/opt/MATLAB/R2015b/bin/glnxa64 -lgsl -lmx -leng -lgslcblas
+INC = -I/usr/include/gsl/ -I/usr/local/MATLAB/R2015b/extern/include
+LIB = -L/usr/local/MATLAB/R2015b/bin/glnxa64 -lgsl -lmx -leng -lgslcblas
 Main : $(OBJS)
 	    $(CC) $(OBJS) -o Main $(LIB) 
 MFree.o: inclu.h BEMCell.h MFree.h BEM.h Matrix.h external.h
