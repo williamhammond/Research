@@ -742,7 +742,9 @@ void nodeGS::calSha(nodeMF* node)
 	int dsum = m_mSha.sub(0,0,0,m_nSur-1).sum() - 1.0;
 	if( dsum > 0.00001|| dsum < -0.00001)
 	{
-		cout<<m_mSha.sub(0,0,0,m_nSur-1).sum()<<endl;
+		cout<< "The sum is equal to: ";
+        cout<<dsum<<endl;
+        cout<<m_mSha.sub(0,0,0,m_nSur-1).sum()<<endl;
 		cout<<"Error: sum of shape is not equal to 1 on gpt"<<endl;
 		wait();
 	}
@@ -1224,13 +1226,13 @@ void Heart::readMF()
    strcat(file,sid);
 	strcat(file, "/heart.cor");
 	::readFile(file,&cor, sizeof(double),DIM,m_nMFNum);
-	
+/*	
 	strcpy(file, path);
 	strcat(file,"Final/");
     strcat(file,sid);
 	strcat(file, "/heart.fib");
 	::readFile(file,&fib, sizeof(double),DIM,m_nMFNum);
-	
+*/	
 	if (!IS_HOMO)
 	{
 		strcpy(file, path);
@@ -1257,13 +1259,13 @@ void Heart::readMF()
 	
 	mfree = new nodeMF[m_nMFNum];
 	double* ptrc = cor;
-	double* ptrf = fib;
+	double* ptrf = 0;
 	
 	for(int i = 0; i<m_nMFNum; i++)
 	{
-		mfree[i].reInit(ptrc, ptrf, D[i],cor, m_nMFNum);
+		//mfree[i].reInit(ptrc, ptrf, D[i],cor, m_nMFNum);
 		ptrc+=3;
-		ptrf+=3;
+		//ptrf+=3;
 	}
 	
 	delete []cor;
