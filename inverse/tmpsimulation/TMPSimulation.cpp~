@@ -163,7 +163,7 @@ void bgMesh::generateGPAll(double* cor, int* tet, int num, int num_tet)
 								genGloGP(gpcor,gpwei,l,m,n);
 								if (!isOut(gpcor,cor,tet,num_tet))
 								{
-							/home/wth4280/Documents/Research/data/KIT/Ref		m_dpGPCor[count++] = gpcor[0];
+									m_dpGPCor[count++] = gpcor[0];
 									m_dpGPCor[count++] = gpcor[1];
 									m_dpGPCor[count++] = gpcor[2];
 									count-=3;
@@ -200,7 +200,7 @@ void bgMesh::setMesSeq(int i,int j,int k)
 	m_ngj = j;
 	m_ngk = k;
 		// generate domain of specified mesh
-	m_dxl = m_dgxl + m_ngi*m_dMesInt;/home/wth4280/Documents/Research/data/KIT/Ref
+	m_dxl = m_dgxl + m_ngi*m_dMesInt;
 	m_dxu = m_dxl + m_dMesInt;
 
 	m_dyl = m_dgyl + m_ngj*m_dMesInt;
@@ -231,7 +231,7 @@ void bgMesh::comSta(double* cor, int num)
 		if( cor[count] >= m_dgxl && cor[count] <= m_dgxu
 		&& cor[count+1] >= m_dgyl && cor[count+1] <= m_dgyu
 		&& cor[count+2] >= m_dgzl && cor[count+2] <= m_dgzu)
-/home/wth4280/Documents/Research/data/KIT/Ref
+
 			m_nGPNum = m_nGPNum + 1;
 		
 		count+=3;
@@ -306,7 +306,7 @@ void bgMesh::comSta(double* cor, int num)
 //*******************************************************
 void bgMesh::genGloGP(double* cor,double* wei, int l, int m, int n)
 {
-	// x = ( xl + xu) /2 + gp*(xu-xl)/2/home/wth4280/Documents/Research/data/KIT/Ref
+	// x = ( xl + xu) /2 + gp*(xu-xl)/2
 	cor[0] = ( m_dxl + m_dxu )/2.0 + m_dpNatGPCor[l]*( m_dxu - m_dxl)/2.0;
 	cor[1] = ( m_dyl + m_dyu )/2.0 + m_dpNatGPCor[m]*( m_dyu - m_dyl)/2.0;
 	cor[2] = ( m_dzl + m_dzu )/2.0 + m_dpNatGPCor[n]*( m_dzu - m_dzl)/2.0;
@@ -742,9 +742,7 @@ void nodeGS::calSha(nodeMF* node)
 	int dsum = m_mSha.sub(0,0,0,m_nSur-1).sum() - 1.0;
 	if( dsum > 0.00001|| dsum < -0.00001)
 	{
-		cout<< "The sum is equal to: ";
-        cout<<dsum<<endl;
-        cout<<m_mSha.sub(0,0,0,m_nSur-1).sum()<<endl;
+		cout<<m_mSha.sub(0,0,0,m_nSur-1).sum()<<endl;
 		cout<<"Error: sum of shape is not equal to 1 on gpt"<<endl;
 		wait();
 	}
@@ -1226,13 +1224,13 @@ void Heart::readMF()
    	strcat(file,sid);
 	strcat(file, "/heart.cor");
 	::readFile(file,&cor, sizeof(double),DIM,m_nMFNum);
-/*	
-	strcpy(file, path);
-	strcat(file,"Final/");
-    	strcat(file,sid);
-	strcat(file, "/heart.fib");
-	::readFile(file,&fib, sizeof(double),DIM,m_nMFNum);
-*/	
+	
+	//strcpy(file, path);
+	//strcat(file,"Final/");
+    //strcat(file,sid);
+	//strcat(file, "/heart.fib");
+	//::readFile(file,&fib, sizeof(double),DIM,m_nMFNum);
+	
 	if (!IS_HOMO)
 	{
 		strcpy(file, path);
@@ -1259,12 +1257,12 @@ void Heart::readMF()
 	
 	mfree = new nodeMF[m_nMFNum];
 	double* ptrc = cor;
-	double* ptrf = 0;
+	double* ptrf = fib;
 	
 	for(int i = 0; i<m_nMFNum; i++)
 	{
 		//mfree[i].reInit(ptrc, ptrf, D[i],cor, m_nMFNum);
-		ptrc+=3;
+		//ptrc+=3;
 		//ptrf+=3;
 	}
 	
