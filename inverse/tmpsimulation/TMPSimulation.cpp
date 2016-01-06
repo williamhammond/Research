@@ -200,7 +200,7 @@ void bgMesh::setMesSeq(int i,int j,int k)
 	m_ngj = j;
 	m_ngk = k;
 		// generate domain of specified mesh
-	m_dxl = m_dgxl + m_ngi*m_dMesInt;/home/wth4280/Documents/Research/data/KIT/Ref
+	m_dxl = m_dgxl + m_ngi*m_dMesInt;
 	m_dxu = m_dxl + m_dMesInt;
 
 	m_dyl = m_dgyl + m_ngj*m_dMesInt;
@@ -231,7 +231,6 @@ void bgMesh::comSta(double* cor, int num)
 		if( cor[count] >= m_dgxl && cor[count] <= m_dgxu
 		&& cor[count+1] >= m_dgyl && cor[count+1] <= m_dgyu
 		&& cor[count+2] >= m_dgzl && cor[count+2] <= m_dgzu)
-/home/wth4280/Documents/Research/data/KIT/Ref
 			m_nGPNum = m_nGPNum + 1;
 		
 		count+=3;
@@ -306,7 +305,7 @@ void bgMesh::comSta(double* cor, int num)
 //*******************************************************
 void bgMesh::genGloGP(double* cor,double* wei, int l, int m, int n)
 {
-	// x = ( xl + xu) /2 + gp*(xu-xl)/2/home/wth4280/Documents/Research/data/KIT/Ref
+	// x = ( xl + xu) /2 + gp*(xu-xl)/2
 	cor[0] = ( m_dxl + m_dxu )/2.0 + m_dpNatGPCor[l]*( m_dxu - m_dxl)/2.0;
 	cor[1] = ( m_dyl + m_dyu )/2.0 + m_dpNatGPCor[m]*( m_dyu - m_dyl)/2.0;
 	cor[2] = ( m_dzl + m_dzu )/2.0 + m_dpNatGPCor[n]*( m_dzu - m_dzl)/2.0;
