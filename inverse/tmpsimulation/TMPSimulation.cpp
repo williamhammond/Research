@@ -163,7 +163,7 @@ void bgMesh::generateGPAll(double* cor, int* tet, int num, int num_tet)
 								genGloGP(gpcor,gpwei,l,m,n);
 								if (!isOut(gpcor,cor,tet,num_tet))
 								{
-							/home/wth4280/Documents/Research/data/KIT/Ref		m_dpGPCor[count++] = gpcor[0];
+									m_dpGPCor[count++] = gpcor[0];
 									m_dpGPCor[count++] = gpcor[1];
 									m_dpGPCor[count++] = gpcor[2];
 									count-=3;
