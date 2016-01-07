@@ -1,0 +1,34 @@
+% File: exhaustive_knn.m
+% Author: William Hammond
+% Date: 01/07/2016
+% Description:  This code applies the k-nn algorithm on a set of synthetic 
+%               TMP signals based off a single patient. The patient's 
+%               geometry was used to exhaustively simulate the TMP 
+%               signals treating every possible node in the heart as the 
+%               source of the signal. 
+
+
+% Path to directory holding all of the TMP signals 
+dataPath = '../data/processed/Simulation/1898/Output/forward/';
+% The number of nodes
+dim = 1898;
+% The number of timesteps we used 
+nTime = 10153;
+
+i = 1;
+fileName = sprintf('output%d.bin', i);
+resultPath = strcat(dataPath,fileName);
+
+fid = fopen(resultPath,'r');
+output1 = fread(fid, [nTime,dim], 'double');
+fclose(fid);
+
+i = 2;
+fileName = sprintf('output%d.bin', i);
+resultPath = strcat(dataPath,fileName);
+
+fid = fopen(resultPath,'r');
+output2 = fread(fid, [nTime,dim], 'double');
+fclose(fid);
+
+for 
