@@ -25,7 +25,7 @@ fclose(fid);
 
 bestErr = inf;
 bestNode = 0;
-for i = 2:10
+for i = 1:10
     % Read in output
     fileName=sprintf('output%d.bin', i);
     resultPath = strcat(dataPath,fileName);
