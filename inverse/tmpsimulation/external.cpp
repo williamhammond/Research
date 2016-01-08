@@ -106,9 +106,9 @@ void reSet(double* data, int len)
 
 void wait()
 {
-	cout<<"Press any key to continue"<<endl;
-	char c;
-	cin>>c;
+	//cout<<"Press any key to continue"<<endl;
+	//char c;
+	//cin>>c;
 	exit(0);
 }
 

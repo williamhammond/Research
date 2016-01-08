@@ -1,11 +1,13 @@
-% File: exhaustive_knn.m
+% File: exhaustive_search.m
 % Author: William Hammond
 % Date: 01/07/2016
-% Description:  This code applies the k-nn algorithm on a set of synthetic 
+% Description:  This code exhausively searches through synthetic data of
 %               TMP signals based off a single patient. The patient's 
 %               geometry was used to exhaustively simulate the TMP 
 %               signals treating every possible node in the heart as the 
-%               source of the signal. 
+%               source of the signal. The ground truth data is then
+%               compared to every signal generated and the once with the
+%               smallest mean squared error is chosen. 
 
 tic;
 % Path to directory holding all of the TMP signals 
@@ -13,7 +15,7 @@ dataPath = '../data/processed/Simulation/1898/Output/forward/';
 % The number of nodes
 dim = 1898;
 % The number of timesteps we used 
-nTime = 10153;
+nTime = 10153;on a set of 
 
 % Read in the ground truth data
 i = 1;
