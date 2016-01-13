@@ -1,6 +1,9 @@
 *.bin
+.project
 *.o
 data/*
 Makefile
 Main
 gp.cor
+inverse/tmpsimulation/Debug/
+.cproject

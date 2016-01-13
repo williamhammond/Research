@@ -1,7 +1,5 @@
 % This code may need to adjust parameters: noiCov, Eps, Alpha_s 
 % input and output path
-%path='../../../data/PhysioNet/Case3/Processed/Simulation/Input/';
-%path2='../../../data/PhysioNet/Case3/Processed/Simulation/Output/';
 
 path='../../../data/processed/Simulation/1898/Input/';
 path2='../../../data/processed/Simulation/1898/Output/';
@@ -60,4 +58,7 @@ for i = 1:1
 %     parsave(resultPath, QU);
 end
 % matlabpool close
+
+conn = database('/home/wth4280/Documents/Research/data/processed/SignalAW.db','','','org.sqlite.JDBC','URL');
+
 fprintf('Finish\n');

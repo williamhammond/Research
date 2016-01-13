@@ -1,11 +1,10 @@
 #ifndef TMPSIMULATION_H_
 #define TMPSIMULATION_H_
 
-
 //*******************************************************************************
 //general class for shape, A, B which has **, **_dx, **_dy, **_dz
 //********************************************************************************
-class MatrixGroup{
+class MatrixGroup {
 public:
 	MatrixGroup();
 	MatrixGroup(int row, int col);
@@ -13,7 +12,7 @@ public:
 
 	void Initialize(int row, int col);
 	void reSet();
-	void setData(double,int,int);
+	void setData(double, int, int);
 public:
 	Matrix d;
 	Matrix dx;
@@ -26,20 +25,18 @@ public:
 //the whole bgMesh info, recording the boundary of the mesh, also 
 //used to generate gp in each gp mesh; judge whether outof original volume domain
 //*******************************************************
-class bgMesh
-{
+class bgMesh {
 public:
 	bgMesh(double* cor, int num);
 	~bgMesh();
-	
+
 public:
 	void generateGPAll(double* cor, int* tet, int num, int num_tet);
 private:
 	void setMesSeq(int, int, int);
-    void genGloGP(double* gpcor, double* gpwei,int l, int m, int n);
-    void comSta(double* cor, int num);          // 0, totally out; 1, partially out; else, in
-    bool isOut(double* gpcor,double* cor,int* tet, int num_tet);
-
+	void genGloGP(double* gpcor, double* gpwei, int l, int m, int n);
+	void comSta(double* cor, int num); // 0, totally out; 1, partially out; else, in
+	bool isOut(double* gpcor, double* cor, int* tet, int num_tet);
 
 private:
 	//member
@@ -61,7 +58,7 @@ private:
 	int m_ngi;
 	int m_ngj;
 	int m_ngk;
-	
+
 	//local mesh info: boundary of each mesh
 	double m_dxl;
 	double m_dxu;
@@ -69,7 +66,7 @@ private:
 	double m_dyu;
 	double m_dzl;
 	double m_dzu;
-	
+
 	double m_dMesInt;
 	int m_nSta;
 	// shared info, only initialized once
@@ -78,7 +75,7 @@ private:
 	int m_nGPNum;         // # gp for each mesh
 public:
 	int m_nGPNumAll;
-	double* m_dpGPCor;    
+	double* m_dpGPCor;
 	double* m_dpGPWei;
 };
 
@@ -86,15 +83,14 @@ public:
 //class:nodal
 //Abstract generic representation of a node, with coordinate, fiber
 //*******************************************************
-class node
-{
+class node {
 public:
-	node( );
-	node(double*, double*,double D);
+	node();
+	node(double*, double*, double D);
 	~node();
 	//re-intialization
 protected:
-	void reInit(double*, double*,double D);
+	void reInit(double*, double*, double D);
 
 	//member
 protected:
@@ -103,43 +99,39 @@ protected:
 	double m_dD;       // Difussion tensor value;
 };
 
-
 //*******************************************************
 //class:meshfree point
 //derivative of class node
 //*******************************************************
-class nodeMF:public node
-{
+class nodeMF: public node {
 	friend class nodeGS;
 	friend class Heart;
 public:
 	nodeMF();
-	nodeMF(double*, double*,double, double*,int);
+	nodeMF(double*, double*, double, double*, int);
 	~nodeMF();
-	void reInit(double*,double*,double, double*,int);
-	
+	void reInit(double*, double*, double, double*, int);
+
 private:
 	void calculRInf(double* cor, int num);
 private:
-	int* m_npIInf;           //idx of nodes inside the influnce domain of this node
+	int* m_npIInf;        //idx of nodes inside the influnce domain of this node
 	double m_dRInf;         //radius of the 
 	Matrix m_mp;
 };
-
 
 //*******************************************************
 //class:gs point
 //derivative of class node
 //*******************************************************
-class nodeGS:public node
-{
+class nodeGS: public node {
 	friend class nodeMF;
 	friend class Heart;
 public:
 	nodeGS();
-	nodeGS(double*,double*,nodeMF*,int);
+	nodeGS(double*, double*, nodeMF*, int);
 	~nodeGS();
-	void reInit(double*, double*,nodeMF*,int);
+	void reInit(double*, double*, nodeMF*, int);
 	double getWei();
 private:
 	void initMatrixInf();
@@ -156,7 +148,7 @@ public:
 	Matrix m_mDB;
 private:
 	double* m_dpFib;
-    double* m_dpWSur;     //weight associated with supporting nodes, including w, dwdx, dwdy, dwdz
+	double* m_dpWSur; //weight associated with supporting nodes, including w, dwdx, dwdy, dwdz
 	MatrixGroup m_mP;
 	MatrixGroup m_mA;
 	MatrixGroup m_mB;
@@ -165,13 +157,11 @@ private:
 	Matrix m_mQ;  //rotation matrix
 };
 
-
 //*****************************************************
 //class: Heart
 //including all necessary info of the heart: tet;meshfree nodes; gs nodes;
 //*****************************************************
-class Heart
-{
+class Heart {
 public:
 	Heart(char* path);
 	~Heart();
@@ -181,13 +171,13 @@ private:
 	void genBG();
 	void genGS();
 public:
-	void assTrans();	
+	void assTrans();
 	void writeTrans();
-	
+
 	void checkInfR(char* testPath);
 	void checkGP(char* testPath);
 	void checkInfMfree(char* file);
-	
+
 private:
 	char* path;
 	int m_nTetNum;      //# tetra
@@ -195,21 +185,19 @@ private:
 	double* m_dpTetCor;
 	int* m_npTet;
 	int m_nMFNum;
-	
+
 	nodeMF* mfree;
 	nodeGS* gspt;
 	bgMesh* bg;
-	
+
 	double* m_dpM;
 	double* m_dpK;
 };
 
-
 //********************************************************
 //class: Simulator
 //**********************************************************
-class Simulator
-{
+class Simulator {
 public:
 	Simulator(char* path);
 	~Simulator();
@@ -222,25 +210,26 @@ private:
 	void processA(char lr);
 	void removeSti(char);
 	void addSti(char);
-	
+
 	void getCurrentSti(int i);
 	void updateA(int i);
-	void samPro_RK(int i,double dt);
+	void samPro_RK(int i, double dt);
 	void fg(Matrix& u, Matrix& v);
 	void setExcitation(char* path);
 	void setPacing(char* in);
-	
+
 	double numDiff(double* head_u, double* head_t, char type);
-	void iniAT(int& s_pos, int& f_pos, int& rs_pos, int& rf_pos,int& max_pos,double& max,double* u);
-	void finPeak(int& peak_pos, int& re_pos,double* u);
-	void u2t( );
-	
+	void iniAT(int& s_pos, int& f_pos, int& rs_pos, int& rf_pos, int& max_pos,
+			double& max, double* u);
+	void finPeak(int& peak_pos, int& re_pos, double* u);
+	void u2t();
+
 private:
 	double* t;
 	double tmax;
 	double dt_simul;
 	double dt_save;
-	
+
 	Matrix U;
 	Matrix V;
 //	Matrix Y;
@@ -250,27 +239,27 @@ private:
 	Matrix Sti;
 	int* sti_l;
 	int* sti_r;
-	int* sti_p;        //sti indexing whether l/r/p has stimulus at each time instant
- 	Matrix Par;
+	int* sti_p;   //sti indexing whether l/r/p has stimulus at each time instant
+	Matrix Par;
 	Matrix state;
 	Matrix mea;
 	int step_simul;
 	int step_save;
 	double t_delay;
-    int step_delay;
+	int step_delay;
 	int* exc;
 	int num_exc;
 	int num_exc_lv;
 	int num_exc_rv;
 	double duration_exc;
-	
+
 	double* focus;
 	int num_focus;
 	double duration_focus;
 	double freq_focus;
 	double start_focus;
 	int startstep_focus;
-	
+
 	Matrix u0_RK;
 	Matrix v0_RK;
 	Matrix ui_RK;
@@ -278,16 +267,14 @@ private:
 	Matrix u0_fg;
 	Matrix v0_fg;
 	Matrix vec_one;
-	
+
 	double* parameter;
-	
+
 	double* AT;
 	int* AT_idx;
 	double* RT;
 	int* RT_idx;
 	double* APD;
 };
-
-
 
 #endif /*TMPSIMULATION_H_*/

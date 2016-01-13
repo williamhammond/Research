@@ -3,7 +3,6 @@
 
 class Matrix;
 
-
 int checkNan(Matrix& p);
 
 void Poly3D(Matrix& p, double x, double y, double z);
@@ -17,7 +16,8 @@ void reSet(double* data, int len);
 void wait();
 
 double dotProduct(char axis, double x, double y, double z);
-double dotProduct(double x,double y, double z, double x1, double y1, double z1);
+double dotProduct(double x, double y, double z, double x1, double y1,
+		double z1);
 //int round(double d);
 
 void readPara();

@@ -15,7 +15,7 @@ dataPath = '../data/processed/Simulation/1898/Output/forward/';
 % The number of nodes
 dim = 1898;
 % The number of timesteps we used 
-nTime = 10153;on a set of 
+nTime = 10153;
 
 % Read in the ground truth data
 i = 1;
@@ -31,13 +31,13 @@ for i = 1:10
     % Read in output
     fileName=sprintf('output%d.bin', i);
     resultPath = strcat(dataPath,fileName);
-    fid = fopen(resultPath, 'r');
-    curr = fread(fid, [nTime,dim], 'double');
-    fclose(fid);
     
-    newErr = immse(target,curr);
+    m = memmapfile(resultPath, 'Format', {'double',[nTime dim],'x'});
+    
+    newErr = immse(target,m.data.x);
     if newErr < bestErr
         bestErr = newErr;
         bestNode = i;
     end
 end
+time = toc;
