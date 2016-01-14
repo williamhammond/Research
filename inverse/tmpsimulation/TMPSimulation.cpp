@@ -1131,14 +1131,14 @@ void Heart::readMF() {
 	strcat(file, sid);
 	strcat(file, "/heart.cor");
 	::readFile(file, &cor, sizeof(double), DIM, m_nMFNum);
-	/*
-	 strcpy(file, path);
-	 strcat(file,"Final/");
-	 strcat(file,sid);
-	 strcat(file, "/heart.fib");
-	 ::readFile(file,&fib, sizeof(double),DIM,m_nMFNum);
-	 */
-	if (!IS_HOMO) {
+	/* 
+    strcpy(file, path);
+	strcat(file,"Final/");
+	strcat(file,sid);
+	strcat(file, "/heart.fib");
+	::readFile(file,&fib, sizeof(double),DIM,m_nMFNum);
+	*/
+    if (!IS_HOMO) {
 		strcpy(file, path);
 		strcat(file, "Final/");
 		strcat(file, sid);
@@ -1159,7 +1159,7 @@ void Heart::readMF() {
 
 	mfree = new nodeMF[m_nMFNum];
 	double* ptrc = cor;
-	double* ptrf = 0;
+	double* ptrf = fib;
 
 	for (int i = 0; i < m_nMFNum; i++) {
 		mfree[i].reInit(ptrc, ptrc, D[i],cor, m_nMFNum);
