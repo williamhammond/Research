@@ -59,6 +59,4 @@ for i = 1:1
 end
 % matlabpool close
 
-conn = database('/home/wth4280/Documents/Research/data/processed/SignalAW.db','','','org.sqlite.JDBC','URL');
-
 fprintf('Finish\n');

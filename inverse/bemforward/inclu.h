@@ -23,7 +23,7 @@ using std::endl;
 //**************************************************************
 //for BEM&MFree********************
 //control************
-const int NUM_NODE = 1898;//
+const int NUM_NODE = 1424;//
 const int GAUPOI = 7;//
 const int SINGAUPOI = 3;
 const int GPNUM = 3;

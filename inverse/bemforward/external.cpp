@@ -371,13 +371,13 @@ int computeFECG()
     		num_file = 11;
     	if (type == 1 || type == 2)
     	{
-    	    char* copath_ref = "/home/will/Documents/Research/inverse/data/processed/Ref/";
+    	    char* copath_ref = "/home/wth4280/Documents/Research/data/KIT/Ref/";
     	    		//"Ref/";Auckland/Auckland_f02_2_5/Processed/Results/Ref/";
     	    	//;"../BEMForward/Period_III/Sphere/input/test/";
-    	    char* in = "/home/will/Documents/Research/inverse/data/processed/Final/";
+    	    char* in = "/home/wth4280/Documents/Research/data/KIT/Final/";
     	    		//"Auckland/Auckland_f02_2_5/Final/";PhysioNet/case2/Auckland/Auckland_f02_2_5/Processed/Results/Final/";
     	               //"../BEMForward/Period_III/Sphere/input/test/";
-    		char* out ="/home/will/Documents/Research/inverse/data/processed/Simulation/";
+    		char* out ="/home/wth4280/Documents/Research/data/KIT/Simulation/";
     				//"Auckland/Auckland_f02_2_5/Simulation/";Auckland/Auckland_f02_2_5/Processed/Results/Simulation/";
     		////"../BEMForward/Period_III/Sphere/output/test/F1/";	PhysioNet/case2	              
     		char id[5];
