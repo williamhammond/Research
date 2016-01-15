@@ -18,20 +18,18 @@ class MFree;
 // used to specify each bgmesh according to its global sequence(coordinate of boundary)
 // generate according gp; judge whether outof original volume domain
 //*******************************************************
-class bgMesh
-{
+class bgMesh {
 	friend class MFree;
 	//functions
 	//ctors/dtor
 public:
-	bgMesh( MFree& mfree );
+	bgMesh(MFree& mfree);
 	~bgMesh();
-	
-private:
-	void setMesSeq(int, int, int,MFree& mfree);
-    void genGloGP(cor& gpcor, cor& gpwei,int, int , int);
-    void comSta(MFree& mfree);          // 0, totally out; 1, partially out; else, in
 
+private:
+	void setMesSeq(int, int, int, MFree& mfree);
+	void genGloGP(cor& gpcor, cor& gpwei, int, int, int);
+	void comSta(MFree& mfree);     // 0, totally out; 1, partially out; else, in
 
 	//member
 	//individual ID,specified each time
@@ -52,12 +50,11 @@ private:
 //class:nodal
 //spedify each nodal: determine P matrix
 //*******************************************************
-class nodal
-{
+class nodal {
 	friend class gp;
 	//ctors/dtor
 public:
-	nodal( );
+	nodal();
 	~nodal();
 	//re-intialization
 private:
@@ -72,7 +69,7 @@ private:
 //*******************************************************************************
 //general class for shape, A, B which has **, **_dx, **_dy, **_dz
 //********************************************************************************
-class MatrixGroup{
+class MatrixGroup {
 public:
 	MatrixGroup();
 	MatrixGroup(int row, int col);
@@ -92,23 +89,22 @@ public:
 //used to specify each global gp(cor&wei); get it supportive nodals(seq and #); compute
 // f(x) for this gp; assemble it into global transfer matrix
 //*******************************************************
-class gp
-{
+class gp {
 	friend class nodal;
 	friend class MFree;
 
 	//ctors/dtor
 public:
-	gp(); 
+	gp();
 	gp(int num);
 	~gp();
 private:
 	//functions
-	void reIni(cor&,double,MFree&);
-	void reIni(cor&, cor&,MFree&);            // set the properties of each gp
-	void setGPCon(MFree&,double*);
+	void reIni(cor&, double, MFree&);
+	void reIni(cor&, cor&, MFree&);            // set the properties of each gp
+	void setGPCon(MFree&, double*);
 	void computeQ();
-	void getSur(MFree&);           
+	void getSur(MFree&);
 	void poly3D(Matrix* m, cor c);
 
 	void sinTrans(MFree&);
@@ -117,7 +113,7 @@ private:
 	cor m_gpCor;
 	cor m_gpFib;
 	double m_dWei;
-    //information for support nodes
+	//information for support nodes
 	double* m_nodWei;
 	double* m_nodWeiDx;
 	double* m_nodWeiDy;
@@ -145,8 +141,7 @@ private:
 // read in data
 // output: transfer matrx ; get input and compute body surface potential
 //*******************************************************
-class MFree
-{
+class MFree {
 	friend class gp;
 	friend class bgMesh;
 	friend class nodal;
@@ -156,22 +151,22 @@ class MFree
 
 	//ctors/dtor
 public:
-	MFree( double,char**,BEM& bem);  // specify gp in each mesh, mesh interval and input file
+	MFree(double, char**, BEM& bem); // specify gp in each mesh, mesh interval and input file
 	~MFree();
 private:
 	//functions
 	void genBgMes();                    //apply when initialize
-    void getNodInfDom(int);             //generate influence domain diameter for every nodal,apply when initialize
-	void setSurPoiInf(int,cor);         //set surface points info, apply for each surface points
-	bool isout(cor gpCor);                 //detect whether gp( with cor gpCor) is in the geometry 
+	void getNodInfDom(int); //generate influence domain diameter for every nodal,apply when initialize
+	void setSurPoiInf(int, cor); //set surface points info, apply for each surface points
+	bool isout(cor gpCor); //detect whether gp( with cor gpCor) is in the geometry
 	void rearrange(BEM& bem);
 
 	void writeGPInfo(char* path);
-	void readGPInfo(char* path);             //all gpt info saved under //GP// directory
+	void readGPInfo(char* path);     //all gpt info saved under //GP// directory
 
 public:
-	void assTrans(BEM&,char* output);                    //assemble transfer matrix ( major function)
-	
+	void assTrans(BEM&, char* output); //assemble transfer matrix ( major function)
+
 	//member
 	//read-in data
 private:
@@ -193,21 +188,21 @@ private:
 	//variables computed in " getNodInfDom"
 	double* m_dpNodDom;   //influence domain diameter for every nodal    
 	// variables computed in" setSurPoiInf"
-	int m_nSurPoiSeq;        // sequence of surface point, used to determine which row of transfer matrix is computed
-	cor m_sSurPoiCor;        // coordinate of surface point, used in computation of f(x)
+	int m_nSurPoiSeq; // sequence of surface point, used to determine which row of transfer matrix is computed
+	cor m_sSurPoiCor; // coordinate of surface point, used in computation of f(x)
 	double* m_dpR;
 //	double m_dSurPoiCon;
 	//variables computed in "genBgMes"
-   double m_nMesInt;        // bg_mesh interval
-	cor* m_spBouCor;      // apex of boundary mesh: [(xl,yl,zl),(xu,yu,zu)]not correpsonds to real point coordinates
-	int* m_npMesNum;        //#  mesh  ( total# , # in x direction, # in y, # in z)
+	double m_nMesInt;        // bg_mesh interval
+	cor* m_spBouCor; // apex of boundary mesh: [(xl,yl,zl),(xu,yu,zu)]not correpsonds to real point coordinates
+	int* m_npMesNum;     //#  mesh  ( total# , # in x direction, # in y, # in z)
 	//int m_nGPTot;         //total# of gp
 
 	int m_nTetNodNum;
 	int m_nTetNum;
 	int* m_npTetSeq;
-	cor* m_spTetCor;      // info about tetradron, which is used to judge gps' position
-   
+	cor* m_spTetCor; // info about tetradron, which is used to judge gps' position
+
 	gp* m_ptrGP;          // pointers to current gp 
 	bgMesh* m_ptrMes;         // pointers to current mesh
 	double* m_dpTrans;        // ultimate transfer function

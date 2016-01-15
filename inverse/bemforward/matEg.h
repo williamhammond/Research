@@ -1,4 +1,3 @@
-
 #ifndef MATEG_H_
 #define MATEG_H_
 
@@ -16,8 +15,7 @@ using std::endl;
 class Matrix;
 
 //************************************************
-class matEg
-{
+class matEg {
 public:
 	matEg(int lenBuffer);
 	~matEg();
@@ -25,7 +23,7 @@ public:
 	int Open(const char*);
 	int Close();
 //	template<typename T> 
-	int addData(double* data, const char* name,int row, int col);
+	int addData(double* data, const char* name, int row, int col);
 	int addData(Matrix& m, const char* name);
 //	int changeData(double* data,const char* name);
 //	template<typename T> 
@@ -33,16 +31,15 @@ public:
 	int getData(Matrix& m, const char* name);
 	double getTemptScale(const char* name);
 	int evalString(const char *string);
-	  
+
 private:
 	Engine* pEg;
 //	mxArray** pMx;                      //matlab matrix used to transfer data between C & matlab
 //   char** pName;                   // corresponding name of these matrix
 //	int nLenMx;
 //	int nCurrentMx;
-    char* pBuffer;     // one in each engine, start at the beginning, close at the end
+	char* pBuffer; // one in each engine, start at the beginning, close at the end
 	int nLenBuffer;
 };
-
 
 #endif /*MATEG_H_*/

@@ -7,10 +7,7 @@
 
 //#include "Filter.h"
 
-
-
-int main()
-{
+int main() {
 	computeFECG();
 //	testFECG();
 }

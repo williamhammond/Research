@@ -2,53 +2,48 @@
 #include "matEg.h"
 #include "Matrix.h"
 
-
-
 //********************************
 //ctor/dtor
 //********************************
-matEg::matEg(int lenBuffer):nLenBuffer(lenBuffer)
-{
+matEg::matEg(int lenBuffer) :
+		nLenBuffer(lenBuffer) {
 	pBuffer = new char[nLenBuffer];
 }
 
-matEg::~matEg()
-{
-	delete []pBuffer;
+matEg::~matEg() {
+	delete[] pBuffer;
 }
 
 //***************************************
 //start the engine, begin the output buffer
 //***************************************
-int matEg::Open(const char* cmd)
-{
-	if (!(pEg = engOpen(cmd)))
-	{
-		cout<<endl<<"Error: can not open the matlab engine!"<<endl;
+int matEg::Open(const char* cmd) {
+	if (!(pEg = engOpen(cmd))) {
+		cout << endl << "Error: can not open the matlab engine!" << endl;
 		return EXIT_FAILURE;
 	}
 
-	cout<<endl<<"***Began matlab engine***"<<endl;
-	engOutputBuffer(pEg,pBuffer,nLenBuffer);
-	
+	cout << endl << "***Began matlab engine***" << endl;
+	engOutputBuffer(pEg, pBuffer, nLenBuffer);
+
 	return 1;
 }
 
 //****************************************
 //stop the engine, stop the output buffer
 //****************************************
-int matEg::Close()
-{
-	if(engClose(pEg))
-	{
-		cout<<endl<<"Error: can not stop the matlab engine or the engine has been closed!"<<endl;
+int matEg::Close() {
+	if (engClose(pEg)) {
+		cout << endl
+				<< "Error: can not stop the matlab engine or the engine has been closed!"
+				<< endl;
 		return EXIT_FAILURE;
 	}
 
-	engOutputBuffer(pEg,NULL,0);
+	engOutputBuffer(pEg, NULL, 0);
 
-	cout<<endl<<"***End matlab engine***"<<endl;
-	
+	cout << endl << "***End matlab engine***" << endl;
+
 	return 1;
 }
 
@@ -57,77 +52,73 @@ int matEg::Close()
 //from array needs to be computed in matlab, formulate mxArray, and put into workspace
 //****************************************
 //template <typename T>
-int matEg::addData(double* data, const char* name,int row, int col)
-{
-/*	if (nCurrentMx >= nLenMx)
-	{
-		cout<<endl<<"Error: Matrix exceeds index!"<<endl;
-		return EXIT_FAILURE;
-	}
-	else
-	{
-*/
-		
+int matEg::addData(double* data, const char* name, int row, int col) {
+	/*	if (nCurrentMx >= nLenMx)
+	 {
+	 cout<<endl<<"Error: Matrix exceeds index!"<<endl;
+	 return EXIT_FAILURE;
+	 }
+	 else
+	 {
+	 */
+
 	//creat matrix***********
-	mxArray* pMx = mxCreateDoubleMatrix(row,col,mxREAL);
-	if(!pMx)
-	{
-		cout<<endl<<"Error: can not creat mxArray: "<<name<<endl;
+	mxArray* pMx = mxCreateDoubleMatrix(row, col, mxREAL);
+	if (!pMx) {
+		cout << endl << "Error: can not creat mxArray: " << name << endl;
 		return EXIT_FAILURE;
 	}
-/*		//record its name***********
-		pName[nCurrentMx] = new char[sizeof(name)];
-		strcpy(pName[nCurrentMx],name);
-*/		//copy the data***********
-	memcpy((void*)mxGetPr(pMx),(void*) data,row*col*sizeof(double));
+	/*		//record its name***********
+	 pName[nCurrentMx] = new char[sizeof(name)];
+	 strcpy(pName[nCurrentMx],name);
+	 */		//copy the data***********
+	memcpy((void*) mxGetPr(pMx), (void*) data, row * col * sizeof(double));
 	//put into matlab workspace*******
-	if (engPutVariable(pEg,name,pMx))
-	{
-		cout<<endl<<"Error: can not put mxArray: "<<name<<" into matlab workspace"<<endl;			
+	if (engPutVariable(pEg, name, pMx)) {
+		cout << endl << "Error: can not put mxArray: " << name
+				<< " into matlab workspace" << endl;
 		return EXIT_FAILURE;
 	}
-	
+
 	mxDestroyArray(pMx);
-	
+
 	return 1;
 }
 
 //combined with Matrix**********************
-int matEg::addData(Matrix& data, const char* name)
-{
-/*	if (nCurrentMx >= nLenMx)
-	{
-		cout<<endl<<"Error: Matrix exceeds index!"<<endl;
-		return EXIT_FAILURE;
-	}
-	else
-	{
-*/
-		
+int matEg::addData(Matrix& data, const char* name) {
+	/*	if (nCurrentMx >= nLenMx)
+	 {
+	 cout<<endl<<"Error: Matrix exceeds index!"<<endl;
+	 return EXIT_FAILURE;
+	 }
+	 else
+	 {
+	 */
+
 	int row = data.getRow();
 	int col = data.getCol();
 	double* ptr = data.getDataPtr();
 	//creat matrix***********
-	mxArray* pMx = mxCreateDoubleMatrix(row,col,mxREAL);
-	if(!pMx)
-	{
-		cout<<endl<<"Error: can not creat mxArray: "<<name<<endl;
+	mxArray* pMx = mxCreateDoubleMatrix(row, col, mxREAL);
+	if (!pMx) {
+		cout << endl << "Error: can not creat mxArray: " << name << endl;
 		return EXIT_FAILURE;
 	}
-/*		//record its name***********
-		pName[nCurrentMx] = new char[sizeof(name)];
-		strcpy(pName[nCurrentMx],name);
-*/		//copy the data***********
-	memcpy((void*)mxGetPr(pMx),(void*) ptr,row*col*sizeof(double));
+	/*		//record its name***********
+	 pName[nCurrentMx] = new char[sizeof(name)];
+	 strcpy(pName[nCurrentMx],name);
+	 */		//copy the data***********
+	memcpy((void*) mxGetPr(pMx), (void*) ptr, row * col * sizeof(double));
 	//put into matlab workspace*******
-	if (engPutVariable(pEg,name,pMx))
-	{
-		cout<<endl<<"Error: can not put mxArray: "<<name<<" into matlab workspace"<<endl;			
+	if (engPutVariable(pEg, name, pMx)) {
+		cout << endl << "Error: can not put mxArray: " << name
+				<< " into matlab workspace" << endl;
 		return EXIT_FAILURE;
 	}
-	
+
 	mxDestroyArray(pMx);
-	
+
 	return 1;
 }
 //********************************************
@@ -137,50 +128,49 @@ int matEg::addData(Matrix& data, const char* name)
 //otherwise, change the value of the matrix
 //*******************************************
 /*
-int matEg::changeData(double* data, const char* name,int row, int col)
-{
-	for (int i=0; i<nLenMx; i++)
-	{
-		if (strcmp(pName[i],name) == 0)
-		{
-			double* ptr = mxGetPr(pMx[i]);
-			for(j=0; j<row*col; j++)
-				ptr[j] = data[j];
-            //put into matlab workspace
-			if (engPutVariable(pEg,name,pMx[i]))
-			{
-				cout<<endl<<"Error: can not put mxArray #"<<i<<" "<<name<<" into matlab workspace"<<endl;			
-				return EXIT_FAILURE;
-			}
-		}
-		else
-			addData(data,name,row,col);
-	return 1;
-}
-*/
+ int matEg::changeData(double* data, const char* name,int row, int col)
+ {
+ for (int i=0; i<nLenMx; i++)
+ {
+ if (strcmp(pName[i],name) == 0)
+ {
+ double* ptr = mxGetPr(pMx[i]);
+ for(j=0; j<row*col; j++)
+ ptr[j] = data[j];
+ //put into matlab workspace
+ if (engPutVariable(pEg,name,pMx[i]))
+ {
+ cout<<endl<<"Error: can not put mxArray #"<<i<<" "<<name<<" into matlab workspace"<<endl;
+ return EXIT_FAILURE;
+ }
+ }
+ else
+ addData(data,name,row,col);
+ return 1;
+ }
+ */
 //********************************************
 //get the data from the result of matlab session, by the name
 //********************************************
 //template <typename T>
-int matEg::getData(double* data, const char* name)
-{
-/*	for (int i=0; i<nLenMx; i++)
-	{
-		if (strcmp(pName[i],name) == 0)
-		{
-			//destroy early mxArray********important!!***
-			if(pMx[i])
-				mxDestroyArray(pMx[i]);
-*/		
-	mxArray* pMx = engGetVariable(pEg,name);
-	if (pMx  == NULL)
-	{
-		cout<<"Errors: can not read the variable"<<name<<"from matlab"<<endl;
+int matEg::getData(double* data, const char* name) {
+	/*	for (int i=0; i<nLenMx; i++)
+	 {
+	 if (strcmp(pName[i],name) == 0)
+	 {
+	 //destroy early mxArray********important!!***
+	 if(pMx[i])
+	 mxDestroyArray(pMx[i]);
+	 */
+	mxArray* pMx = engGetVariable(pEg, name);
+	if (pMx == NULL) {
+		cout << "Errors: can not read the variable" << name << "from matlab"
+				<< endl;
 		return EXIT_FAILURE;
 	}
 	double* ptr = mxGetPr(pMx);
-	int num = mxGetM(pMx)*mxGetN(pMx);
-	for(int j=0; j<num; j++)
+	int num = mxGetM(pMx) * mxGetN(pMx);
+	for (int j = 0; j < num; j++)
 		data[j] = ptr[j];
 
 	mxDestroyArray(pMx);
@@ -188,20 +178,19 @@ int matEg::getData(double* data, const char* name)
 }
 
 //***combined with Matrix**********************
-int matEg::getData(Matrix& data, const char* name)
-{
-/*	for (int i=0; i<nLenMx; i++)
-	{
-		if (strcmp(pName[i],name) == 0)
-		{
-			//destroy early mxArray********important!!***
-			if(pMx[i])
-				mxDestroyArray(pMx[i]);
-*/		
-	mxArray* pMx = engGetVariable(pEg,name);
-	if (pMx  == NULL)
-	{
-		cout<<"Errors: can not read the variable"<<name<<"from matlab"<<endl;
+int matEg::getData(Matrix& data, const char* name) {
+	/*	for (int i=0; i<nLenMx; i++)
+	 {
+	 if (strcmp(pName[i],name) == 0)
+	 {
+	 //destroy early mxArray********important!!***
+	 if(pMx[i])
+	 mxDestroyArray(pMx[i]);
+	 */
+	mxArray* pMx = engGetVariable(pEg, name);
+	if (pMx == NULL) {
+		cout << "Errors: can not read the variable" << name << "from matlab"
+				<< endl;
 		return EXIT_FAILURE;
 	}
 	double* ptr = mxGetPr(pMx);
@@ -213,23 +202,19 @@ int matEg::getData(Matrix& data, const char* name)
 //*******************************************
 //for a temptoray scale in Mat workspace, get double in C without cretaing matrix in engine
 //******************************************
-double matEg::getTemptScale(const char* name)
-{
-   double* ptr = mxGetPr(engGetVariable(pEg,name));
-   return ptr[0];
+double matEg::getTemptScale(const char* name) {
+	double* ptr = mxGetPr(engGetVariable(pEg, name));
+	return ptr[0];
 }
-
 
 //*************************************
 //send command to matlab for computing
 //*************************************
-int matEg::evalString(const char* string)
-{
-	if (engEvalString(pEg,string))
-	{
-		cout<<endl<<"Error: can not evaluate the function"<<endl;
+int matEg::evalString(const char* string) {
+	if (engEvalString(pEg, string)) {
+		cout << endl << "Error: can not evaluate the function" << endl;
 		return EXIT_FAILURE;
 	}
-	
+
 	return 1;
 }
