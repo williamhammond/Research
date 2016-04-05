@@ -18,12 +18,17 @@ dim = 1898;
 nTime = 10153;
 
 % Read in the ground truth data
-i = 1;
-fileName = sprintf('output%d.bin', i);
-resultPath = strcat(dataPath,fileName);
-fid = fopen(resultPath,'r');
-target = fread(fid, [nTime,dim], 'double');
+filename = strcat(dataPath,'TMP.bin');
+fid = fopen(filename,'rb');
+TMP = fread(fid,[dim,inf],'double')';
 fclose(fid);
+
+% i = 1;
+% fileName = sprintf('output%d.bin', i);
+% resultPath = strcat(dataPath,fileName);
+% fid = fopen(resultPath,'r');
+% target = fread(fid, [nTime,dim], 'double');
+% fclose(fid);
 
 bestErr = inf;
 bestNode = 0;
