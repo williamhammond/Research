@@ -4,8 +4,8 @@ function u = write_vtk_sequence(option,value,interval,outputfile,varargin)
 % interval: the time interal at which the file is saved
 % varargin: fileid, used in cases where "value" needs to be read from a set
 % of single files
-path='/home/wth4280/Documents/Research/VTK/';
-addpath('/home/wth4280/Documents/Research/data/Hackathon/geometry');
+path='/home/wth4280/Research/VTK/output/';
+addpath('/home/wth4280/Research/data/Hackathon/geometry');
 if nargin>4
     fileid = varargin{1};
     
@@ -22,33 +22,12 @@ if nargin>4
     end
 end
 
-%name = input('Input file name for geometry (without extension) \n','s');
-
-% file = strcat(path,name);
-% file = strcat(file,'.cor');
-% fid = fopen(file,'rb');
-% cor = fread(fid,[3,inf],'double');
-% fclose(fid);
-% 
-% if option == 'v'
-%     file = strcat(path,name);
-%     file = strcat(file,'.tet');
-%     fid = fopen(file,'rb');
-%     tet = fread(fid,[4,inf],'int');
-%     fclose(fid);
-% else
-%     file = strcat(path,name);
-%     file = strcat(file,'.tri');
-%     fid = fopen(file,'rb');
-%     tet = fread(fid,[3,inf],'int');
-%     fclose(fid);
-% end
 fid=fopen('heart_tet.cor','rb');
 cor=fread(fid,[3,inf], 'double');
 fclose(fid);
 
 fid=fopen('heart_tet.tet','rb');
-tet=fread(fid,[4,inf], 'double');
+tet=fread(fid,[4,inf], 'int');
 fclose(fid);
 
 tet = tet - 1;

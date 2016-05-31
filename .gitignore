@@ -8,3 +8,5 @@ gp.cor
 .cproject
 lib/*
 old/*
+VTK/output/
+results/*
